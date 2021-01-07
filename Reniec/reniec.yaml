@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reniec
+  labels:
+    app: reniec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reniec
+  template:
+    metadata:
+      labels:
+        app: reniec
+    spec:
+      containers:
+        - name: reniec
+          image: reniec/prueba
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: regcred
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: reniec
+spec:
+  selector:
+    app: reniec
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer

@@ -1,0 +1,45 @@
+******************************************
+ATMDeposit
+*****************************************
+Post
+http://localhost:8000/atm/deposits
+{
+    "documentNumber":"10000000"
+}
+
+
+******************************************
+Person
+*****************************************
+Get
+http://localhost:8001/core/persons/documentNumber=10000000
+
+******************************************
+Fingerprints
+******************************************
+Post
+http://localhost:8002/core/fingerprints/validate
+{
+    "documentNumber":"10000001"
+}
+
+******************************************
+Reniec
+******************************************
+Post
+http://localhost:8003//external/reniec/validate
+{
+    "documentNumber":"10000001"
+}
+
+******************************************
+Cards
+******************************************
+Get
+http://localhost:8004/core/cards/documentNumber=10000001
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atmdeposit
+  labels:
+    app: atmdeposit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atmdeposit
+  template:
+    metadata:
+      labels:
+        app: atmdeposit
+    spec:
+      containers:
+        - name: atmdeposit
+          image: atmdeposit/prueba
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: regcred
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: atmdeposit
+spec:
+  selector:
+    app: atmdeposit
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer

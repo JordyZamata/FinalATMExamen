@@ -1,0 +1,8 @@
+package com.examen.atm.model;
+
+public class ATMDepositRequest {
+
+	
+	private String documentNumber;
+	
+}
